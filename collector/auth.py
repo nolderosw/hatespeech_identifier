@@ -12,6 +12,8 @@ def authenticate():
     bearer_token = config['twitter']['bearer_token']
 
     # authenticate
-    client = tweepy.Client(bearer_token=bearer_token, access_token=access_token, access_token_secret=access_token_secret)
+    client = tweepy.Client(bearer_token=bearer_token, 
+                           access_token=access_token, 
+                           access_token_secret=access_token_secret)
 
     return client
