@@ -3,7 +3,7 @@ import nltk
 import string
 import unicodedata
 
-def retirar_stopwords(lista_tweets):
+def remove_stopwords(lista_tweets):
     stopwords = nltk.corpus.stopwords.words("portuguese")
 
     regex = re.compile('[%s]' % re.escape(string.punctuation))
@@ -19,7 +19,7 @@ def retirar_stopwords(lista_tweets):
     return nova_lista
 
 
-def retirar_acentos(lista_tweets):
+def remove_acentos(lista_tweets):
     texto_limpo = []
     for indice in range(len(lista_tweets)):
         texto_limpo.append([])

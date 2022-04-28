@@ -1,6 +1,6 @@
 from auth import *
 from normalizer import *
-from tokenizer import criar_tokens
+from tokenizer import create_tokens
 import configparser
 import pandas as pd
 
@@ -13,23 +13,23 @@ tweets = client.search_recent_tweets(query=query, max_results=100)
 
 columns = ['Tweet Tratado', 'Tweet Original']
 data = []
-lista_tweets = []
-lista_tweets_tratados = []
+tweets = []
+tweets_normalized = []
 
 for tweet in tweets.data:
     if(tweet is not None):
-        lista_tweets.append(tweet)
+        tweets.append(tweet)
 
-lista_tweets_tratados = remove_urls(lista_tweets)
-lista_tweets_tratados = remove_hashtag(lista_tweets_tratados)
-lista_tweets_tratados = remove_usuario(lista_tweets_tratados)
-lista_tweets_tratados = criar_tokens(lista_tweets_tratados)
-lista_tweets_tratados = retirar_stopwords(lista_tweets_tratados)
-lista_tweets_tratados = retirar_acentos(lista_tweets_tratados)
-lista_tweets_tratados = remove_unicode(lista_tweets_tratados)
+tweets_normalized = remove_urls(tweets)
+tweets_normalized = remove_hashtag(tweets_normalized)
+tweets_normalized = remove_usuario(tweets_normalized)
+tweets_normalized = create_tokens(tweets_normalized)
+tweets_normalized = remove_stopwords(tweets_normalized)
+tweets_normalized = remove_acentos(tweets_normalized)
+tweets_normalized = remove_unicode(tweets_normalized)
 
-for i in range(len(lista_tweets_tratados)):
-    data.append([lista_tweets_tratados[i],lista_tweets[i]])
+for i in range(len(tweets_normalized)):
+    data.append([tweets_normalized[i],tweets[i]])
 
 
 df = pd.DataFrame(data, columns=columns)
