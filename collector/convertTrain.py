@@ -25,7 +25,8 @@ with open('treinamento.csv', 'r') as read_obj, \
 
 
     for i in range(len(tweets_normalized)):
-        data.append([classification[i],tweets_normalized[i],lista_tweets[i]])
+        if len(tweets_normalized[i]) > 0 and i > 0:
+            data.append([classification[i],' '.join(tweets_normalized[i]),lista_tweets[i]])
 
 
     df = pd.DataFrame(data, columns=columns)
